@@ -35,21 +35,28 @@ import {
 
 const router = express.Router();
 
+// Parsed once at module load — ADMIN_UIDS is static for the process lifetime.
+const ADMIN_UIDS = (process.env.ADMIN_UIDS || '')
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean);
+
+if (ADMIN_UIDS.length === 0) {
+  console.warn(
+    '⚠️  ADMIN_UIDS is not set — the /community/fix-likes endpoint will reject all requests. ' +
+    'Set ADMIN_UIDS to a comma-separated list of Firebase UIDs in your .env file.'
+  );
+}
+
 // All routes require authentication
 router.use(verifyToken);
 
 // Restricts a route to UIDs listed in ADMIN_UIDS (comma-separated env var).
 // Must be placed after router.use(verifyToken) so req.user is already populated.
-const requireAdmin = (req, res, next) => {
-  const adminUIDs = (process.env.ADMIN_UIDS || '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean);
-
-  if (!adminUIDs.includes(req.user?.uid)) {
+const requireAllowlistedUID = (req, res, next) => {
+  if (!ADMIN_UIDS.includes(req.user?.uid)) {
     return res.status(403).json({ success: false, error: 'Admin access required' });
   }
-
   next();
 };
 
@@ -143,7 +150,7 @@ router.get('/presence/channel/:channelId/members', async (req, res, next) => {
 router.get('/search', searchCommunity);
 
 // ============ UTILITY ROUTES ============
-// requireAdmin enforces ADMIN_UIDS allowlist — prevents DoS via unbounded batch recalculation
-router.post('/fix-likes', requireAdmin, fixPostLikeCounts);
+// requireAllowlistedUID enforces ADMIN_UIDS allowlist — prevents DoS via unbounded batch recalculation
+router.post('/fix-likes', requireAllowlistedUID, fixPostLikeCounts);
 
 export default router;
