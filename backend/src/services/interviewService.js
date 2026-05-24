@@ -3,15 +3,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-let groqInstance = null;
-
-const getGroq = () => {
-  if (groqInstance) return groqInstance;
-  if (!process.env.GROQ_API_KEY) {
-    throw new Error("The GROQ_API_KEY environment variable is missing or empty.");
-  }
-  groqInstance = new Groq({ apiKey: process.env.GROQ_API_KEY });
-  return groqInstance;
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
 if (!GROQ_API_KEY) {
@@ -37,7 +28,6 @@ const getGroqClient = () => {
 const generateQuestionId = () => `q_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
 const callGroq = async (prompt) => {
-  const completion = await getGroq().chat.completions.create({
   const client = getGroqClient();
   const completion = await client.chat.completions.create({
     messages: [{ role: 'user', content: prompt }],
