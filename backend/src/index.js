@@ -314,4 +314,15 @@ const shutdown = async (signal) => {
 process.on('SIGTERM', () => shutdown('SIGTERM'));
 process.on('SIGINT', () => shutdown('SIGINT'));
 
+process.on("unhandledRejection", (reason) => {
+  console.error("❌ UNHANDLED REJECTION:", reason);
+});
+
+process.on("uncaughtException", (err) => {
+  console.error("❌ UNCAUGHT EXCEPTION:", err);
+  httpServer.close();
+  redisManager.shutdown().finally(() => process.exit(1));
+  setTimeout(() => process.exit(1), 10000).unref();
+});
+
 export default app;

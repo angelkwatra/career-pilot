@@ -60,6 +60,7 @@ import PortfolioHub from './pages/hubs/PortfolioHub';
 import CareerGrowthHub from './pages/hubs/CareerGrowthHub';
 import CommunityHub from './pages/hubs/CommunityHub';
 import GitHubDashboard from './pages/GitHubDashboard';
+import ScrollToTop from "./components/ScrollToTop";
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -122,6 +123,7 @@ function AppRoutes() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       {!!user && (
         <CommandPalette
           isOpen={isCommandPaletteOpen}
