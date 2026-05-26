@@ -1,4 +1,4 @@
-import React, {userId} from "react";
+import React, {useId} from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { User, LineChart, Shield, Brain, Code2, Target } from "lucide-react";
 
@@ -41,7 +41,7 @@ const item = {
 };
 
 export default function About() {
-  const gradientId = userId();
+  const gradientId = useId();
   const prefersReducedMotion = useReducedMotion();
   return (
     <section className="relative w-full bg-gray-950 text-white py-24 px-6 md:px-16 overflow-hidden">
@@ -50,11 +50,11 @@ export default function About() {
         <motion.svg className="w-full h-full">
           <motion.path
             d="M0,200 Q120,120 240,180 T480,160 T720,200 T960,140"
-            stroke="url(#${gradientId})"
+            stroke={`url(#${gradientId})`}
             strokeWidth="2"
             fill="transparent"
             initial={prefersReducedMotion ? false : { pathLength: 0 }}
-            animate={prefersReducedMotion ? { pathLength: 1 } : { pathLength: 1 }}
+            animate={prefersReducedMotion ? { pathLength: 1 } : { pathLength: 0 }}
            transition={
              prefersReducedMotion ? { duration: 0 } : { duration: 5, repeat: Infinity, ease: "easeInOut" }
           }
