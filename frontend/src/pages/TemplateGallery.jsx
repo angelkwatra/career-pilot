@@ -11,7 +11,7 @@ import TechStartupHero from "../components/portfolio/templates/Tech_Startup/Hero
 import GeometricShapesAbout from "../components/portfolio/templates/Geometric_Shapes/About";
 import DragPortfolio from "../components/portfolio/templates/Drag_Portfolio";
 import ChooseAdventurePortfolio from "../components/portfolio/templates/Choose_Adventure/index";
-import WeatherMood from "../components/portfolio/templates/Weather_Mood/index";
+import QuizReveal from "../components/portfolio/templates/Quiz_Reveal/index";
 import RetroProjects from "../components/portfolio/templates/2D_Retro_8bit/Projects";
 import FantasyRPGProjects from "../components/portfolio/templates/Fantasy_RPG/Projects";
 import Navbar from '../components/Navbar'
@@ -242,6 +242,18 @@ export default function TemplateGallery() {
       rating: 0,
       createdAt: "2026-05-26",
     },
+    {
+      id: 5,
+      title: "Quiz Reveal",
+      category: "Portfolio",
+      colorScheme: "Dark",
+      layout: "Interactive",
+      author: "Career Pilot",
+      views: 0,
+      rating: 0,
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=520&fit=crop",
+      createdAt: "2026-05-27",
+    },
 
   ];
 
@@ -270,6 +282,7 @@ export default function TemplateGallery() {
     { value: "Grid", label: "Grid" },
     { value: "Minimal", label: "Minimal" },
     { value: "Cards", label: "Cards" },
+    { value: "Interactive", label: "Interactive" },
   ];
   const SORT_OPTIONS = [
     { value: "Popular", label: "Popular" },
@@ -459,6 +472,17 @@ export default function TemplateGallery() {
         </div>
         <div className="overflow-hidden rounded-2xl border border-border">
           <WeatherMood />
+        </div>
+      </div>
+      <div className="mt-12">
+        <div className="mb-4 flex items-center gap-3 px-1">
+          <span className="rounded-full bg-cyan-500/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-cyan-400 border border-cyan-500/30">
+            Preview
+          </span>
+          <h2 className="text-lg font-semibold text-foreground/70">Quiz Reveal Theme — Full Interactive Template</h2>
+        </div>
+        <div className="overflow-hidden rounded-2xl border border-border">
+          <QuizReveal />
         </div>
       </div>
       <div className="mt-12">
