@@ -12,6 +12,7 @@ import { SocketProvider } from './context/SocketProvider';
 import { ThemeProvider } from './context/ThemeProvider';
 import AppLayout from './components/AppLayout';
 import Footer from './components/ui/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
 
 import CommandPalette from './components/CommandPalette';
 import BackToTop from './components/BackToTop';
@@ -174,30 +175,30 @@ function AppRoutes() {
         {/* Core Protected Routes */}
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/upload" element={<ProtectedRoute><Upload /></ProtectedRoute>} />
-        <Route path="/resume-builder" element={<ProtectedRoute><ResumeBuilder /></ProtectedRoute>} />
-        <Route path="/text-to-resume" element={<ProtectedRoute><TextToResume /></ProtectedRoute>} />
-        <Route path="/enhance/:resumeId" element={<ProtectedRoute><Enhance /></ProtectedRoute>} />
-        <Route path="/resume/:resumeId" element={<ProtectedRoute><ResumeView /></ProtectedRoute>} />
-        <Route path="/jobs" element={<ProtectedRoute><JobSearch /></ProtectedRoute>} />
-        <Route path="/job-alerts" element={<ProtectedRoute><JobAlerts /></ProtectedRoute>} />
-        <Route path="/job-tracker" element={<ProtectedRoute><JobTracker /></ProtectedRoute>} />
-        <Route path="/community" element={<ProtectedRoute><Community /></ProtectedRoute>} />
-        <Route path="/interview-prep" element={<ProtectedRoute><InterviewPrep /></ProtectedRoute>} />
-        <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
-        <Route path="/profile/:uid" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+        <Route path="/resume-builder" element={<ProtectedRoute><ErrorBoundary><ResumeBuilder /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/text-to-resume" element={<ProtectedRoute><ErrorBoundary><TextToResume /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/enhance/:resumeId" element={<ProtectedRoute><ErrorBoundary><Enhance /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/resume/:resumeId" element={<ProtectedRoute><ErrorBoundary><ResumeView /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/jobs" element={<ProtectedRoute><ErrorBoundary><JobSearch /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/job-alerts" element={<ProtectedRoute><ErrorBoundary><JobAlerts /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/job-tracker" element={<ProtectedRoute><ErrorBoundary><JobTracker /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/community" element={<ProtectedRoute><ErrorBoundary><Community /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/interview-prep" element={<ProtectedRoute><ErrorBoundary><InterviewPrep /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute><ErrorBoundary><UserProfile /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/profile/:uid" element={<ProtectedRoute><ErrorBoundary><UserProfile /></ErrorBoundary></ProtectedRoute>} />
         <Route path="/security" element={<ProtectedRoute><SecuritySettings /></ProtectedRoute>} />
-        <Route path="/email-generator" element={<ProtectedRoute><EmailGenerator /></ProtectedRoute>} />
-        <Route path="/linkedin-optimizer" element={<ProtectedRoute><LinkedInOptimizer /></ProtectedRoute>} />
-        <Route path="/deployments" element={<ProtectedRoute><Deployments /></ProtectedRoute>} />
+        <Route path="/email-generator" element={<ProtectedRoute><ErrorBoundary><EmailGenerator /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/linkedin-optimizer" element={<ProtectedRoute><ErrorBoundary><LinkedInOptimizer /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/deployments" element={<ProtectedRoute><ErrorBoundary><Deployments /></ErrorBoundary></ProtectedRoute>} />
         <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
 
         {/* Hub Routes */}
-        <Route path="/hub/resume" element={<ProtectedRoute><ResumeHub /></ProtectedRoute>} />
-        <Route path="/hub/jobs" element={<ProtectedRoute><JobsHub /></ProtectedRoute>} />
-        <Route path="/hub/portfolio" element={<ProtectedRoute><PortfolioHub /></ProtectedRoute>} />
-        <Route path="/hub/career" element={<ProtectedRoute><CareerGrowthHub /></ProtectedRoute>} />
-        <Route path="/hub/community" element={<ProtectedRoute><CommunityHub /></ProtectedRoute>} />
-        <Route path="/github-dashboard" element={<ProtectedRoute><GitHubDashboard /></ProtectedRoute>} />
+        <Route path="/hub/resume" element={<ProtectedRoute><ErrorBoundary><ResumeHub /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/hub/jobs" element={<ProtectedRoute><ErrorBoundary><JobsHub /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/hub/portfolio" element={<ProtectedRoute><ErrorBoundary><PortfolioHub /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/hub/career" element={<ProtectedRoute><ErrorBoundary><CareerGrowthHub /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/hub/community" element={<ProtectedRoute><ErrorBoundary><CommunityHub /></ErrorBoundary></ProtectedRoute>} />
+        <Route path="/github-dashboard" element={<ProtectedRoute><ErrorBoundary><GitHubDashboard /></ErrorBoundary></ProtectedRoute>} />
 
         {/* Nested Fellowship Routes */}
         <Route path="/fellowship" element={<ProtectedRoute><FellowshipLayout /></ProtectedRoute>}>
