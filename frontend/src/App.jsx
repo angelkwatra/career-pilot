@@ -87,7 +87,11 @@ function ProtectedRoute({ children }) {
     return <Navigate to="/login" replace />;
   }
 
-  return <AppLayout><ErrorBoundary>{children}</ErrorBoundary></AppLayout>;
+  return (
+    <ErrorBoundary>
+      <AppLayout>{children}</AppLayout>
+    </ErrorBoundary>
+  );
 }
 
 
